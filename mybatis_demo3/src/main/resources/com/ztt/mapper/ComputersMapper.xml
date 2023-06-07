@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztt.mapper.ComputersMapper">
+
+    <resultMap type="com.ztt.pojo.Computers" id="ComputersMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="brand" column="brand" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="runmem" column="runMem" jdbcType="NUMERIC"/>
+        <result property="cpu" column="cpu" jdbcType="VARCHAR"/>
+        <result property="xianka" column="xianKa" jdbcType="NUMERIC"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ComputersMap">
+        select
+          id, brand, price, runMem, cpu, xianKa, status
+        from computers
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ComputersMap">
+        select
+          id, brand, price, runMem, cpu, xianKa, status
+        from computers
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="brand != null and brand != ''">
+                and brand = #{brand}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="runmem != null">
+                and runMem = #{runmem}
+            </if>
+            <if test="cpu != null and cpu != ''">
+                and cpu = #{cpu}
+            </if>
+            <if test="xianka != null">
+                and xianKa = #{xianka}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from computers
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="brand != null and brand != ''">
+                and brand = #{brand}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="runmem != null">
+                and runMem = #{runmem}
+            </if>
+            <if test="cpu != null and cpu != ''">
+                and cpu = #{cpu}
+            </if>
+            <if test="xianka != null">
+                and xianKa = #{xianka}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+    <select id="selectComputerByForEach" resultType="com.ztt.pojo.Computers">
+        select * from computers where id in
+        <foreach collection="list" open="(" separator="," close=")" item="list">
+            #{list}
+        </foreach>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into computers(brand, price, runMem, cpu, xianKa, status)
+        values (#{brand}, #{price}, #{runmem}, #{cpu}, #{xianka}, #{status})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into computers(brand, price, runMem, cpu, xianKa, status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.brand}, #{entity.price}, #{entity.runmem}, #{entity.cpu}, #{entity.xianka}, #{entity.status})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into computers(brand, price, runMem, cpu, xianKa, status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.brand}, #{entity.price}, #{entity.runmem}, #{entity.cpu}, #{entity.xianka}, #{entity.status})
+        </foreach>
+        on duplicate key update
+        brand = values(brand),
+        price = values(price),
+        runMem = values(runMem),
+        cpu = values(cpu),
+        xianKa = values(xianKa),
+        status = values(status)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update computers
+        <set>
+            <if test="brand != null and brand != ''">
+                brand = #{brand},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="runmem != null">
+                runMem = #{runmem},
+            </if>
+            <if test="cpu != null and cpu != ''">
+                cpu = #{cpu},
+            </if>
+            <if test="xianka != null">
+                xianKa = #{xianka},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateByConditionTrim">
+        update computers
+        <trim prefix="set" suffixOverrides=",">
+            <if test="price!=null">
+                price=#{price},
+            </if>
+            <if test="xianka!=null">
+                xianka = #{xianka}
+            </if>
+        </trim>
+    where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from computers where id = #{id}
+    </delete>
+
+</mapper>
+

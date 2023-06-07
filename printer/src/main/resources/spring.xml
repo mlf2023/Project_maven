@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <bean class="com.ztt.service.Printer">
+        <property name="paper" ref="a4Paper"></property>
+        <property name="inkBox" ref="colorInkBox"></property>
+    </bean>
+    <bean class="com.ztt.dao.Impl.A4PaperImpl" id="a4Paper"></bean>
+    <bean class="com.ztt.dao.Impl.B3PaperImpl" id="b3Paper"></bean>
+    <bean class="com.ztt.dao.Impl.ColorInkBoxImpl" id="colorInkBox"></bean>
+    <bean class="com.ztt.dao.Impl.HeibaiInkbox" id="heibaiInkbox"></bean>
+</beans>

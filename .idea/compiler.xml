@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springboot_demo2" />
+        <module name="springboot_demo1" />
+        <module name="printer" />
+        <module name="maven_demo1" />
+        <module name="maven_demo2" />
+        <module name="spring_demo2" />
+        <module name="spring_mybatis01" />
+        <module name="spring_demo1" />
+        <module name="spring_mvc_demo1" />
+        <module name="mybatis_demo1" />
+        <module name="mybatis_demo2" />
+        <module name="springboot_demo3" />
+        <module name="mybatis_demo3" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo" target="17" />
+      <module name="maven_demo1" target="17" />
+      <module name="maven_demo2" target="17" />
+      <module name="mybatis_demo1" target="17" />
+      <module name="mybatis_demo2" target="17" />
+      <module name="mybatis_demo3" target="17" />
+      <module name="printer" target="17" />
+      <module name="spring_demo1" target="17" />
+      <module name="spring_demo2" target="17" />
+      <module name="spring_mvc_demo1" target="17" />
+      <module name="spring_mybatis01" target="17" />
+      <module name="springboot_demo1" target="17" />
+      <module name="springboot_demo2" target="17" />
+      <module name="springboot_demo3" target="17" />
+      <module name="untitled" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo" options="-parameters" />
+      <module name="springboot_demo1" options="-parameters" />
+      <module name="springboot_demo2" options="-parameters" />
+      <module name="springboot_demo3" options="-parameters" />
+    </option>
+  </component>
+</project>

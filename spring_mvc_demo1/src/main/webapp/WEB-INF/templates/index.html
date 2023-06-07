@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>hello springMVC</h1>
+<a th:href="@{/hello/word}">zyx</a>
+<form th:action="@{/hello/test/pojo}">
+    <input type="hidden" value="大佬" name="zyx">
+    <input type="submit" value="大佬显示器">
+</form>
+<a th:href="@{/hello/showView}">12</a>
+<a th:href="@{/demo1/Map}"></a>
+</body>
+</html>

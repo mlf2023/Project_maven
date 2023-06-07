@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ztt.mapper.StudentMapper">
+    <resultMap id="Student" type="com.ztt.pojo.Student">
+        <id column="student_id" property="studentId"></id>
+        <result property="studentname" column="studentname"></result>
+        <result property="classid" column="classid"></result>
+        <collection property="teacherList"  ofType="com.ztt.pojo.Teacher">
+            <id property="teacherid" column="teacherid"></id>
+            <result property="teachername" column="teachername"></result>
+        </collection>
+    </resultMap>
+    <resultMap id="StudentTwo" type="com.ztt.pojo.Student">
+        <id column="student_id" property="studentId"></id>
+        <collection property="teacherList" column="student_id" select="com.ztt.mapper.TeacherMapper.getTeacherByClassId">
+        </collection>
+    </resultMap>
+    <select id="getAllStudent" resultMap="Student">
+        select student.*,teacher.* from student
+        inner join class on student.classid=class.classid
+        inner join teacher on  teacher.teacherid=class.teacherid
+    </select>
+    <select id="getAllStudenttwo" resultMap="StudentTwo">
+        select * from student
+    </select>
+</mapper>

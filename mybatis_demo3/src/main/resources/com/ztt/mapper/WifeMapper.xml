@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ztt.mapper.WifeMapper">
+    <select id="getHUsAndWifeInfo" resultMap="wifeMapper">
+        select * from wife
+    </select>
+<resultMap id="wifeMapper" type="com.ztt.pojo.Wife">
+    <result property="wifeAge" column="nianlin"></result>
+    <result property="hid" column="hid"></result>
+    <association property="husband"
+    select="com.ztt.mapper.HusbandMapper.getHusbandById"
+    column="hid"
+    fetchType="lazy">
+    </association>
+</resultMap>
+</mapper>
